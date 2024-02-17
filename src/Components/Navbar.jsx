@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import colors from 'tailwindcss/colors'
 
-export default function Navbar() {
+export default function Navbar({title}) {
     const [theme,setTheme]=useState('')
     const [lan, setLan] = useState('english')
     useEffect(()=>{
@@ -43,7 +43,7 @@ export default function Navbar() {
       }
   return (
     <div className='hidden shadow-md z-40 md:flex w-screen h-20 bg-gray-100 dark:bg-slate-800 fixed top-0' style={{alignItems:"center",justifyContent:"space-between"}}>
-        <h2 className='text-xl font-bold ml-24 text-black font-title dark:text-gray-100'>Bebsha.AI</h2>
+        {title=="" ? <h2 className='text-xl font-bold ml-24 text-black font-title dark:text-gray-100'>Bebsha.AI</h2> : <h2 className='text-xl font-bold ml-24 text-black font-title dark:text-gray-100'>{title}</h2>}
         <div className="flex flex-row mr-10">
             {/* <input type="text" placeholder="Search" className="input input-bordered w-full max-w-xs" /> */}
             <button  onClick={changeTheme} type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">

@@ -17,10 +17,10 @@ export default function CreateCommon() {
             title:'Product Details',
             subtitle:"Edit and generate product details"
         },
-        {
-            title:'Price Suggestion',
-            subtitle:"Pricing and platform suggestion"
-        }
+        // {
+        //     title:'Price Suggestion',
+        //     subtitle:"Pricing and platform suggestion"
+        // }
 
     ];
     const [active, setActive] = useState(0)
@@ -58,23 +58,23 @@ export default function CreateCommon() {
         </li>}
         </>
         ))}
-       {active!=3 && <li onClick={()=>setActive(3)} class="flex cursor-pointer items-center">
+       {/*active!=3 && <li onClick={()=>setActive(3)} class="flex cursor-pointer items-center">
             <span class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">
                 {4}
             </span>
             Choose Platforms
-        </li>}
-       {active==3 && <li onClick={()=>setActive(3)} class="flex cursor-pointer items-center text-blue-600 dark:text-blue-500">
+        </li>*/}
+       {/*active==3 && <li onClick={()=>setActive(3)} class="flex cursor-pointer items-center text-blue-600 dark:text-blue-500">
             <span class="flex items-center justify-center w-5 h-5 me-2 text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
             {4}
             </span>
             Choose Platforms
-        </li>}
+        </li>*/}
     </ol>
                 {active==0 && <UploadImages nextStep={nextStep}/>}
                 {active==1 && <ProductDetails nextStep={nextStep}/>}
-                {active==2 && <PricingSuggestor nextStep={nextStep}/>}
-                {active==3 && <ChoosePlatforms nextStep={nextStep}/>}
+                {/*active==2 && <PricingSuggestor nextStep={nextStep}/>}
+        {active==3 && <ChoosePlatforms nextStep={nextStep}/>*/}
             </div>
             </div>
         </>
