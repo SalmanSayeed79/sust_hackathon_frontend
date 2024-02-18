@@ -4,19 +4,21 @@ import { HiOutlineHome,HiOutlineCurrencyDollar } from "react-icons/hi2";
 import { TbSocial } from 'react-icons/tb'
 import { MdCreate, MdDashboard } from 'react-icons/md'
 import { CgProfile } from 'react-icons/cg'
-import { BiLogOut } from 'react-icons/bi'
-import { BsChatLeftQuoteFill } from 'react-icons/bs'
+import { BiCart, BiLogOut } from 'react-icons/bi'
+import { BsChatLeftQuoteFill, BsShop } from 'react-icons/bs'
 import { SiGoogleclassroom } from "react-icons/si";
 import { MdOutlineFeaturedPlayList,MdOutlineInfo } from "react-icons/md"
-import { usePlugin } from '../Hooks/PluginContextProvider'
+
 import { GrDashboard } from 'react-icons/gr';
+import { UserAuth } from '../Hooks/AuthContext';
+import { useUserID } from '../Hooks/userContext';
 
 export default function NavigationWide() {
+  const shopId=useUserID()
   const [theme, setTheme] = useState('')
   const [lan, setLan] = useState('english')
   const navigator = useNavigate()
-  const installedPlugins = usePlugin()
-
+  const {logout}=UserAuth()
   const changeTheme = () => {
     console.log("change")
     if (localStorage.getItem('color-theme') === 'light') {
@@ -79,9 +81,9 @@ export default function NavigationWide() {
             </li>
             <li>
            
-              <a href="#" class="flex flex-col md:flex-row items-center justify-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" onClick={() => switchPath("/features")}>
-                <MdOutlineFeaturedPlayList size={24} color={theme === "dark" ? "white" : "grey"} />
-                <span class="ml-3 text-xs flex md:hidden">Features</span>
+              <a href="#" class="flex flex-col md:flex-row items-center justify-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" onClick={() => switchPath("/shop-profile")}>
+                <BsShop size={24} color={theme === "dark" ? "white" : "grey"} />
+                <span class="ml-3 text-xs flex md:hidden">My Shop</span>
               </a>
        
             </li>
@@ -94,9 +96,9 @@ export default function NavigationWide() {
              
             </li>
             <li>
-                <a href="#" class="flex flex-col md:flex-row items-center justify-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" onClick={() => switchPath("/about")}>
-                <MdOutlineInfo size={24} color={theme === "dark" ? "white" : "grey"} />
-                <span class="ml-3 text-xs flex md:hidden">About</span>
+                <a href="#" class="flex flex-col md:flex-row items-center justify-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" onClick={() => switchPath("/shop-home/"+shopId)}>
+                <BiCart size={24} color={theme === "dark" ? "white" : "grey"} />
+                <span class="ml-3 text-xs flex md:hidden">Visit Shop</span>
               </a>
             </li>
             <li onClick={()=>navigator("/chatbot")} className='md:hidden'>
@@ -107,13 +109,20 @@ export default function NavigationWide() {
             </li>       
           </ul>
           <ul class="pt-5 mt-5 hidden md:flex items-center justify-center space-y-10 border-t border-gray-200 dark:border-gray-700">
-            <li onClick={()=>navigator("/chatbot")}> 
+            {/*<li onClick={()=>navigator("/chatbot")}> 
               <a class="flex flex-col items-center justify-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
                 <BsChatLeftQuoteFill size={24} color={theme === "dark" ? "white" : "grey"}/>
                 <span class="ml-3 text-xs flex md:hidden">Chatbot</span>
               </a>
+  </li>*/}
+  <li onClick={()=>logout()}> 
+              <a class="flex flex-col items-center justify-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
+                <BiLogOut size={24} color={theme === "dark" ? "white" : "grey"}/>
+                <span class="ml-3 text-xs flex md:hidden">Chatbot</span>
+              </a>
             </li>
           </ul>
+        
         
         </div>
       </aside>

@@ -4,6 +4,9 @@ import axios from "axios";
 import LoaderPage from "../Components/LoaderPage";
 import { IDContextProvider, useUserID } from "../Hooks/userContext";
 import { MdDone, MdModeEdit } from "react-icons/md";
+import { CircularProgress } from "@mui/material";
+import Navbar from "../Components/Navbar";
+import NavigationWide from "../Components/Navigation";
 export default function ShopProfile() {
   const shopId = useUserID();
   const [editName, setEditName] = useState(false);
@@ -24,7 +27,8 @@ export default function ShopProfile() {
   const [email, setEmail] = useState("");
 
   const updateShop = async () => {
-    return await axios.post(`${BASE_URL}/shop`, {
+    setLoading(true)
+    await axios.put(`${BASE_URL}/shop/${shopId}`, {
       shop_name: name,
       email,
       address: addr,
@@ -34,6 +38,7 @@ export default function ShopProfile() {
       picture,
       cover_pic: coverPic,
     });
+    setLoading(false)
   };
   const [shopData, setShopData] = useState(null);
   const [itemData, setItemData] = useState(null);
@@ -43,7 +48,7 @@ export default function ShopProfile() {
     const res = await axios.get("http://localhost:8000/shop/" + shopId);
     console.log(res.data);
     setShopData(res.data);
-    setName(res.data.name)
+    setName(res.data.shop_name)
     setLng(res.data.lng)
     setlat(res.data.lat)
     setColor(res.data.color)
@@ -51,16 +56,23 @@ export default function ShopProfile() {
     setCoverPic(res.data.cover_pic)
     setAddr(res.data.address)
     setEmail(res.data.email)
-
+    setLoading(false)
   };
 
   useEffect(() => {
     getData();
   }, []);
   if (loading) return <LoaderPage />;
-  return (
-    <div>
-      <div className="flex w-full flex-col  items-center mx-4 mt-2 p-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700 ">
+  return ( 
+    <>
+    <NavigationWide/>
+    <div className="w-screenoverflow-clip flex flex-col items-center">
+      
+      <div className="flex w-screen max-w-7xl flex-col  items-center mx-4 mt-2 p-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700">
+        <h5 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Shop Details 🌁</h5>
+      </div>
+    
+      <div className="flex w-full flex-col max-w-7xl items-center mx-4 mt-2 p-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700 ">
         <form className="w-full">
           {/** SHOP NAME */}
           <div class="mb-6">
@@ -68,7 +80,7 @@ export default function ShopProfile() {
               for="title"
               class="block mb-2 text-sm font-medium text-gray-900 text-primary-400"
             >
-              Product Title
+              Shop Name
             </label>
             {!editName && (
               <div className=" flex items-center ">
@@ -76,7 +88,7 @@ export default function ShopProfile() {
                   for="title"
                   class="block mb-2 text-xl font-semibold text-gray-900 dark:text-white mr-2"
                 >
-                  {shopData.name}
+                  {name}
                 </h4>
                 <button
                   type="button"
@@ -111,7 +123,7 @@ export default function ShopProfile() {
               for="title"
               class="block mb-2 text-sm font-medium text-gray-900 text-primary-400"
             >
-              Brand
+              Shop Latitude
             </label>
             {!editLat && (
               <div className=" flex items-center ">
@@ -119,7 +131,7 @@ export default function ShopProfile() {
                   for="title"
                   class="block mb-2 text-xl font-semibold text-gray-900 dark:text-white mr-2"
                 >
-                  {shopData.lat}
+                  {lat}
                 </h4>
                 <button
                   type="button"
@@ -153,7 +165,7 @@ export default function ShopProfile() {
               for="title"
               class="block mb-2 text-sm font-medium text-gray-900 text-primary-400"
             >
-              Main Material
+              Shop longitude
             </label>
             {!editLng && (
               <div className=" flex items-center ">
@@ -161,7 +173,7 @@ export default function ShopProfile() {
                   for="title"
                   class="block mb-2 text-xl font-semibold text-gray-900 dark:text-white mr-2"
                 >
-                  {shopData.lng}
+                  {lng}
                 </h4>
                 <button
                   type="button"
@@ -195,7 +207,7 @@ export default function ShopProfile() {
               for="title"
               class="block mb-2 text-sm font-medium text-gray-900 text-primary-400"
             >
-              Main Material
+              Shop Color
             </label>
             {!editColor && (
               <div className=" flex items-center ">
@@ -203,7 +215,7 @@ export default function ShopProfile() {
                   for="title"
                   class="block mb-2 text-xl font-semibold text-gray-900 dark:text-white mr-2"
                 >
-                  {shopData.color}
+                  {color}
                 </h4>
                 <button
                   type="button"
@@ -237,7 +249,7 @@ export default function ShopProfile() {
               for="title"
               class="block mb-2 text-sm font-medium text-gray-900 text-primary-400"
             >
-              Main Material
+              Shop Picture URL
             </label>
             {!editPicture && (
               <div className=" flex items-center ">
@@ -245,7 +257,7 @@ export default function ShopProfile() {
                   for="title"
                   class="block mb-2 text-xl font-semibold text-gray-900 dark:text-white mr-2"
                 >
-                  {shopData.picture}
+                  {picture}
                 </h4>
                 <button
                   type="button"
@@ -279,7 +291,7 @@ export default function ShopProfile() {
               for="title"
               class="block mb-2 text-sm font-medium text-gray-900 text-primary-400"
             >
-              Main Material
+              Shop Cover Picture
             </label>
             {!editCoverpic && (
               <div className=" flex items-center ">
@@ -287,7 +299,7 @@ export default function ShopProfile() {
                   for="title"
                   class="block mb-2 text-xl font-semibold text-gray-900 dark:text-white mr-2"
                 >
-                  {shopData.cover_pic}
+                  {coverPic}
                 </h4>
                 <button
                   type="button"
@@ -321,7 +333,7 @@ export default function ShopProfile() {
               for="title"
               class="block mb-2 text-sm font-medium text-gray-900 text-primary-400"
             >
-              Main Material
+              Shop Address
             </label>
             {!editAddr && (
               <div className=" flex items-center ">
@@ -329,7 +341,7 @@ export default function ShopProfile() {
                   for="title"
                   class="block mb-2 text-xl font-semibold text-gray-900 dark:text-white mr-2"
                 >
-                  {shopData.addr}
+                  {addr}
                 </h4>
                 <button
                   type="button"
@@ -366,10 +378,12 @@ export default function ShopProfile() {
             type="button"
             onClick={updateShop}
           >
-            Submit
+            {!loading && "Submit"}
+            {loading && <div><CircularProgress/> Submitting...</div>}
           </button>
         </form>
       </div>
     </div>
+    </>
   );
 }

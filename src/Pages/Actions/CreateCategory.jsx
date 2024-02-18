@@ -18,7 +18,7 @@ export default function CreateCategory() {
         <>
         <Navigation />
             <Navbar />
-            <Agent/>
+            {/**<Agent/>**/}
         <div className='flex flex-col items-center min-h-screen w-screen justify-center dark:bg-gray-900'>
             
           <h3 className="text-3xl mb-4 font-semibold dark:text-primary-500">

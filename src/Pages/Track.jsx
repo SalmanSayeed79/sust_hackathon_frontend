@@ -8,7 +8,7 @@ export default function Track() {
         <>
             <Navigation />
             <Navbar />
-            <Agent />
+            {/**<Agent/>**/}
             <div className="flex items-center  justify-center dark:bg-gray-900">
                 <div className='flex flex-col max-w-7xl md:mt-24 mb-24 md:mb-0 items-center min-h-screen w-screen justify-center dark:bg-gray-900'>
                     <div className="flex flex-col px-2 md:flex-row">

@@ -35,11 +35,7 @@ export default function ShopHome() {
         <h2 className='font-bold text-center mb-10 bg-amber-500 text-gray-100 md:mt-20 text-2xl'>Welcome to our shop</h2>
         <div className='w-full h-screen  flex flex-wrap items-center justify-center'>
             {itemData.map(a=><ItemCard data={a}/>)}
-            {itemData.map(a=><ItemCard data={a}/>)}
-            {itemData.map(a=><ItemCard data={a}/>)}
-            {itemData.map(a=><ItemCard data={a}/>)}
-            {itemData.map(a=><ItemCard data={a}/>)}
-            {itemData.map(a=><ItemCard data={a}/>)}
+
         </div>
         <button className='fixed bottom-8 rounded-full p-3 bg-amber-500 right-8'>
             <BiCart size={48} />

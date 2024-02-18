@@ -13,10 +13,10 @@ export default function Tasks() {
         <>
         <Navigation />
             <Navbar />
-            <Agent/>
+            {/**<Agent/>**/}
         <div className='flex items-center min-h-screen w-screen justify-center dark:bg-gray-900'>
             <div className='min-h-1/2 mt-4 grid md:grid-cols-2 gap-4 md:gap-20 md:mx-24 mb-24 md:mb-0 dark:bg-gray-900'>
-                <button onClick={()=>navigator("/train")} class="flex flex-col items-center justify-center px-20 py-2 md:py-10 text-lg font-medium bg-gray-100 rounded-lg shadow-lg border border-gray-300 hover:bg-gray-300 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                <button onClick={()=>navigator("/train-home")} class="flex flex-col items-center justify-center px-20 py-2 md:py-10 text-lg font-medium bg-gray-100 rounded-lg shadow-lg border border-gray-300 hover:bg-gray-300 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                         <img className='hidden md:flex' src="https://i.postimg.cc/R0sdQsFb/1.png" style={{width:"200px"}}/>
                         <img className='flex md:hidden' src="https://i.postimg.cc/R0sdQsFb/1.png" style={{width:"100px"}}/>
                         Train Employees

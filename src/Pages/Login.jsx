@@ -21,24 +21,17 @@ export default function Login() {
 
     const { signIn,user } = UserAuth()
     const handleSubmit =async () => {
-        try{
+        
           setLogggingIn(true)
           await signIn(email, password)
           
           const res=await axios.get(BASE_URL+'/shop/email/'+email)
-          console.log(res.data.userID)
-          updateBuldrID(res.data.userID)
+          console.log(res.data.shop_id)
+          updateBuldrID(res.data.shop_id)
           navigator('/options')
-        }
-        catch(e){
-          console.log(e)
-          setLogggingIn(false)
-        }
-        finally{
-          setLogggingIn(false)
-          
+       
         } 
-    }
+    
   return (
     <div className='min-h-screen bg-gray-50 dark:bg-gray-900'>
         <section class="bg-gray-50 dark:bg-gray-900">

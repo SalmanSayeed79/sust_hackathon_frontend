@@ -46,7 +46,7 @@ export default function CreateAccount() {
       await createUser(email, password);
       const res = await createUserAccount();
       console.log(res);
-      updateBuldrID(res.data.userID);
+      updateBuldrID(res.data.shop_id);
       navigator("/options");
     } catch (e) {
       console.log(e);

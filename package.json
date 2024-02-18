@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@material-tailwind/react": "^2.1.9",
     "@mui/material": "^5.14.18",
     "@mui/x-charts": "^6.18.2",
     "@uiw/react-md-editor": "^3.25.6",
